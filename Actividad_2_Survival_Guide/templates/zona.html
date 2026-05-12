@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {# zona.nombre es Jinja2: imprime el valor de zona["nombre"]. #}
+  {# El punto (.) accede a la clave del diccionario igual que ["clave"]. #}
+  <title>{{ zona.nombre }}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+  <div class="pantalla-zona">
+
+    <!-- =============================================
+         BARRA SUPERIOR: Vidas y número de zona
+    ============================================= -->
+    <div class="barra-hud">
+
+      <!-- Lado izquierdo: número de zona -->
+      <span class="hud-zona">ZONA {{ numero }}/4</span>
+
+      <!-- Lado derecho: corazones de vida -->
+      <span class="hud-vidas">
+        {# Jinja2: el bucle "for" repite el bloque tantas veces como indique "vidas". #}
+        {# range(vidas) genera [0, 1, 2, ...] igual que en Python. #}
+        {% for i in range(vidas) %}
+        <span class="corazon">♥</span>
+        {% endfor %}
+
+        {# El bucle de abajo dibuja los corazones VACIOS (los que ya perdio). #}
+        {# range(3 - vidas) genera los corazones que faltan hasta llegar a 3. #}
+        {% for i in range(3 - vidas) %}
+        <span class="corazon corazon-vacio">♡</span>
+        {% endfor %}
+      </span>
+
+    </div>
+
+    <!-- =============================================
+         NOMBRE DEL GUARDIAN Y ZONA
+    ============================================= -->
+    <div class="encabezado-zona">
+      <p class="texto-guardián">GUARDIÁN: {{ zona.guardián }}</p>
+      <h2 class="nombre-zona">{{ zona.nombre }}</h2>
+    </div>
+
+    <!-- =============================================
+         CAJA DE LORE
+    ============================================= -->
+    <div class="caja-texto">
+      {# zona.lore imprime el texto de la historia de esta zona. #}
+      {# El texto viene del diccionario ZONAS en app.py. #}
+      <p>{{ zona.lore }}</p>
+    </div>
+
+    <!-- =============================================
+         MENSAJE DE ERROR
+    ============================================= -->
+    {# El bloque if solo se muestra si mensaje_error NO es None. #}
+    {% if mensaje_error %}
+    <div class="caja-error">
+      <p>{{ mensaje_error }}</p>
+      <p class="texto-pequeño">Vidas restantes: {{ vidas }}</p>
+    </div>
+    {% endif %}
+
+    <!-- =============================================
+         FORMULARIO DE PREGUNTAS
+         method="POST" : envía los datos a Flask por POST
+         action=""     : envía al mismo URL actual (/zona/N)
+    ============================================= -->
+    <form method="POST" action="">
+
+      <!-- ----- PREGUNTA 1 ----- -->
+      <div class="bloque-pregunta">
+        <label for="respuesta_1">
+          {# zona.pregunta_1 viene del diccionario ZONAS en app.py #}
+          [P1] {{ zona.pregunta_1 }}
+        </label>
+
+        {# name="respuesta_1" es el nombre con el que Flask leerá este campo: #}
+        {# request.form.get("respuesta_1") #}
+        {# El nombre del input DEBE coincidir con lo que leemos en app.py. #}
+        <input type="text" id="respuesta_1" name="respuesta_1" class="input-pixel" placeholder="Escribe tu respuesta..."
+          autocomplete="off" required>
+      </div>
+
+      <!-- ----- PREGUNTA 2 ----- -->
+      <div class="bloque-pregunta">
+        <label for="respuesta_2">
+          [P2] {{ zona.pregunta_2 }}
+        </label>
+
+        <input type="text" id="respuesta_2" name="respuesta_2" class="input-pixel" placeholder="Escribe tu respuesta..."
+          autocomplete="off" required>
+      </div>
+
+      <!-- ----- CHECKBOX DE COMPROMISO ----- -->
+      <div class="bloque-checkbox">
+        {# type="checkbox": cuando esta marcado, request.form.get("compromiso") devuelve "on". #}
+        {# Cuando NO esta marcado, devuelve None. #}
+        <input type="checkbox" id="compromiso" name="compromiso" class="checkbox-pixel">
+        <label for="compromiso" class="label-checkbox">
+          {{ zona.checkbox_texto }}
+        </label>
+      </div>
+
+      <!-- ----- BOTON ENVIAR ----- -->
+      {# type="submit" envia el formulario. Flask ejecuta la parte POST de zona() en app.py. #}
+      <button type="submit" class="boton-pixel boton-rojo">
+        &gt; RESPONDER Y AVANZAR
+      </button>
+
+    </form>
+
+    <!-- Boton para abandonar, va al inicio y reinicia sesion -->
+    <a href="{{ url_for('inicio') }}" class="boton-pixel boton-gris">
+      &gt; RENDIRSE (volver al inicio)
+    </a>
+
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+  index.html – Pantalla de Inicio
+-->
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aventura UPQ – Programación Móvil</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+  <div class="pantalla-inicio">
+
+    <div class="titulo-bloque">
+      <p class="subtitulo-upq">-- UPQ PRESENTS --</p>
+      <h1 class="titulo-juego">PROGRAMACION<br>MOVIL</h1>
+      <p class="subtitulo-juego">Survival Guide: El Reto Movil</p>
+    </div>
+
+    <div class="personaje-inicio">
+      <div class="sprite-noob"></div>
+    </div>
+
+    <div class="caja-texto">
+      <p>
+        Eres un estudiante NOOB recien llegado al Reino de la Programacion Movil.
+      </p>
+      <p>
+        Para graduarte deberas superar <span class="texto-rojo">4 ZONAS</span>
+        custodiadas por temibles Guardianes.
+      </p>
+      <p>
+        Tienes <span class="texto-rojo">3 VIDAS</span>.
+        Si las pierdes todas... el Monstruo de la Extemporaneidad te devorara.
+      </p>
+    </div>
+
+    <!-- Botón para comenzar el juego -->
+    <!--
+      <a href="..."> genera un enlace HTML normal.
+      url_for('zona', numero=1) genera la URL /zona/1
+      Usamos un enlace en vez de formulario porque solo estamos navegando.
+    -->
+    <a href="{{ url_for('zona', numero=1) }}" class="boton-pixel boton-verde">
+      &gt; INICIAR AVENTURA
+    </a>
+
+    <p class="texto-pequeño">Presiona el boton para comenzar</p>
+
+  </div>
+
+</body>
+
+</html>

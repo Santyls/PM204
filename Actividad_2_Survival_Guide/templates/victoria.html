@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VICTORIA – Aventura UPQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+  <div class="pantalla-victoria">
+
+    <h1 class="titulo-victoria">¡VICTORIA!</h1>
+
+    <p class="subtitulo-juego">HAS SUPERADO TODAS LAS ZONAS</p>
+
+    <div class="caja-texto caja-dorada">
+      <p>
+        El Rector del Reino te entrega el
+        <span class="texto-dorado">Diploma de Programacion Movil</span>.
+      </p>
+      <p>
+        Los Guardianes inclinan la cabeza.
+        El Monstruo de la Extemporaneidad huye aterrado.
+      </p>
+      <p>
+        Has demostrado que conoces las reglas, las notas, las tecnologias
+        y las fechas. Ahora ve y crea tu primera app movil... sin copiar de Stack Overflow.
+      </p>
+    </div>
+
+    <!-- Estadísticas finales -->
+    <div class="marcador-final marcador-victoria">
+      <p>ZONAS SUPERADAS: <span class="texto-dorado">4 / 4</span></p>
+
+      <!--
+        {{ vidas }} imprime las vidas que el jugador conservó al llegar aquí.
+        Esta variable viene de app.py: render_template("victoria.html", vidas=vidas_restantes)
+      -->
+      <p>VIDAS CONSERVADAS: <span class="texto-dorado">{{ vidas }} / 3</span></p>
+
+      <!--
+        Jinja2 if/elif/else: calculamos una calificación "moral" basada en vidas restantes.
+        Esto es lógica de presentación básica directamente en el template.
+      -->
+      {% if vidas == 3 %}
+      <p>RANGO: <span class="texto-dorado">MAESTRO PIXEL</span></p>
+      {% elif vidas == 2 %}
+      <p>RANGO: <span class="texto-dorado">SENIOR DEV</span></p>
+      {% else %}
+      <p>RANGO: <span class="texto-dorado">JUNIOR CON SUERTE</span></p>
+      {% endif %}
+
+    </div>
+
+    <!-- Botón para jugar de nuevo -->
+    <a href="{{ url_for('inicio') }}" class="boton-pixel boton-verde">
+      &gt; JUGAR DE NUEVO
+    </a>
+
+  </div><!-- fin .pantalla-victoria -->
+
+</body>
+
+</html>

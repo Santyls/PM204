@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAME OVER – Aventura UPQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+  <div class="pantalla-gameover">
+
+    <h1 class="titulo-gameover parpadeo">GAME OVER</h1>
+
+    <div class="caja-texto caja-oscura">
+      <p>
+        El <span class="texto-rojo">Monstruo de la Extemporaneidad</span>
+        ha devorado tu expediente escolar.
+      </p>
+      <p>
+        Tus respuestas incorrectas despertaron al demonio del
+        <span class="texto-rojo">Acta de Calificaciones Final</span>.
+      </p>
+      <p>
+        El Guardián Isay anota tu nombre en la lista negra.
+        Quizas el proximo semestre tengas mas suerte... o mas atencion en clase.
+      </p>
+    </div>
+
+    <!-- Sprite de calavera pixel-->
+    <div class="sprite-gameover">
+      <p class="pixel-art-skull">
+        [ X . X ]<br>
+        [ ___ ]<br>
+        [ |___| ]
+      </p>
+    </div>
+
+    <!-- Puntuación final (siempre 0 vidas) -->
+    <div class="marcador-final">
+      <p>VIDAS RESTANTES: <span class="texto-rojo">0</span></p>
+      <p>ZONAS SUPERADAS: <span class="texto-rojo">0</span></p>
+    </div>
+
+    <!-- Botón para intentarlo de nuevo -->
+    <!--
+      Este link va a url_for('inicio') que es la función "inicio" en app.py.
+      Esa función llama a session.clear(), reiniciando el juego completamente.
+    -->
+    <a href="{{ url_for('inicio') }}" class="boton-pixel boton-rojo">
+      &gt; INTENTAR DE NUEVO
+    </a>
+
+  </div>
+
+</body>
+
+</html>
