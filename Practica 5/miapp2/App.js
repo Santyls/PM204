@@ -17,7 +17,12 @@ export default function App() {
         <Text>--------------------------------------</Text>
         <Saludo2/>
         <Text>------------------Repaso de componentes--------------------</Text>
-        <Perfil/>
+        <Perfil nombre="Santiago" carrera="ISC" materia="Movil" cuatri="9"/>
+        <Perfil 
+        nombre="Bjork" 
+        carrera="Comercio" 
+        materia="Algo" 
+        cuatri="9"/>
       <StatusBar style="auto" />
     </View>
   );
