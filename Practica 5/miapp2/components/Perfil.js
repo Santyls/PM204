@@ -1,24 +1,48 @@
 /* Perfil usando desestructuracion */
-import {Text, View, Button} from "react-native";
+import {Text, View, Button, StyleSheet} from "react-native";
 import React,{useState} from "react";
 
-export const Perfil=({nombre,carrera,materia,cuatri})=>{
+export const Perfil=({nombre,carrera,materia,cuatri,style})=>{
     const [mostrar, setMostrar]= useState(false)
     return(
-        <View>
-            <Text>{nombre}</Text>
+        <View style={[styles.tarjeta, style]}>
+            <Text style={styles.nombre}>{nombre}</Text>
 
             {mostrar &&
             <>
-            <Text>{carrera}</Text>
-            <Text>{materia}</Text>
-            <Text>{cuatri}</Text>
+            <Text style={styles.carrera}>{carrera}</Text>
+            <Text style={styles.otroTexto}>{materia}</Text>
+            <Text style={styles.otroTexto}>{cuatri}</Text>
             </>
             }
             <Button title="Ver perfil" onPress={()=>setMostrar(!mostrar)}/>
         </View>
     )
 } 
+
+const styles= StyleSheet.create({
+    nombre:{
+        fontSize: 24,
+        fontWeight: 600, /* va del 100 a 900, siendo 100 la mas delgada y 900 la mas marcada */
+        textTransform:'uppercase'
+    },
+    tarjeta:{
+        borderWidth: 2,
+        padding: 25,
+        margin: 10
+    },
+    carrera:{
+        fontSize: 18,
+        color: 'blue',
+        fontFamily: 'Robot'
+    },
+    otroTexto:{
+        fontSize:12,
+        fontFamily: 'Roboto',
+        fontStyle: 'italic'
+    },
+
+});
 
 
 
