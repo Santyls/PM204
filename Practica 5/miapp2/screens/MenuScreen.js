@@ -33,37 +33,45 @@ export default function MenuScreen() {
         case 'modal':
             return <ModalScreen/>
         case 'menu':
-            default:
-                return (
-                    <View   View style={styles.container}>
-                          
-                        <View>
-                            <Button title='Practica Tarjetas' onPress={()=>setScreen('tarjetas')}/>
-                        </View>
-                        <View>
-                            <Button title='Practica SafeArea' onPress={()=>setScreen('safeArea')}/>
-                        </View>
-                        <View>
-                            <Button title='Practica Pressable' onPress={()=>setScreen('pressable')}/>
-                        </View>
-                        <View>
-                            <Button title='Practica TextInput' onPress={()=>setScreen('textInput')}/>
-                        </View>
-                        <View>
-                            <Button title='Practica FlatList' onPress={()=>setScreen('flatList')}/>
-                        </View>
-                        <View>
-                            <Button title='Practica ImageBackgroung' onPress={()=>setScreen('imageBackgroung')}/>
-                        </View>
-                        <View>
-                            <Button title='Practica ActivityIndicator' onPress={()=>setScreen('activityIndicator')}/>
-                        </View>
-                        <View>
-                            <Button title='Practica Modal' onPress={()=>setScreen('modal')}/>
-                        </View>
+        default:
+            return (
+                <View style={styles.container}>
+                    
+                    <View>
+                        <Button title='Practica Tarjetas' onPress={()=>setScreen('tarjetas')}/>
+                    </View>
+
+                    <View>
+                        <Button title='Practica SafeArea' onPress={()=>setScreen('safeArea')}/>
+                    </View>
+
+                    <View>
+                        <Button title='Practica Pressable' onPress={()=>setScreen('pressable')}/>
+                    </View>
+
+                    <View>
+                        <Button title='Practica TextInput' onPress={()=>setScreen('textInput')}/>
+                    </View>
+
+                    <View>
+                        <Button title='Practica FlatList' onPress={()=>setScreen('flatList')}/>
+                    </View>
+
+                    <View>
+                        <Button title='Practica ImageBackground' onPress={()=>setScreen('imageBackgroung')}/>
+                    </View>
+
+                    <View>
+                        <Button title='Practica ActivityIndicator' onPress={()=>setScreen('activityIndicator')}/>
+                    </View>
+
+                    <View>
+                        <Button title='Practica Modal' onPress={()=>setScreen('modal')}/>
+                    </View>
+
                     <StatusBar style="auto" />
-                    </View>          
-                );
+                </View>          
+            );
     }
 }
 
@@ -73,9 +81,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+
     alignItems: 'center',
     justifyContent: 'space-around',
-    flexDirection: 'row',
+
+    // ⚠️ esto pone botones en fila
+    flexDirection: 'row', 
   },
-  
 });
