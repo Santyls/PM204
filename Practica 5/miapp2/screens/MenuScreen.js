@@ -86,6 +86,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
 
     // ⚠️ esto pone botones en fila
-    flexDirection: 'row', 
+    flexDirection: 'column', 
   },
 });
